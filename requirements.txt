@@ -1,0 +1,5 @@
+openai==1.54.5
+anthropic==0.39.0
+python-dotenv==1.0.1
+colorama==0.4.6
+pydantic==2.9.2
