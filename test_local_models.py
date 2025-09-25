@@ -71,13 +71,16 @@ def main():
     if test_model("mistral:latest", test_prompt):
         models_ok += 1
     
+    if test_model("qwen3:latest", test_prompt):
+        models_ok += 1
+    
     # Summary
     print(f"\n{Fore.CYAN}Summary:")
-    if models_ok == 2:
-        print(f"{Fore.GREEN}✅ Both models are working!")
+    if models_ok == 3:
+        print(f"{Fore.GREEN}✅ All models are working!")
         print(f"\nYou can now run: python3 local_alignment_test.py")
-    elif models_ok == 1:
-        print(f"{Fore.YELLOW}⚠️  Only {models_ok} model is working")
+    elif models_ok > 0:
+        print(f"{Fore.YELLOW}⚠️  Only {models_ok}/3 models are working")
         print(f"Run: ./setup_local_models.sh to install missing models")
     else:
         print(f"{Fore.RED}❌ No models are working")

@@ -35,6 +35,9 @@ class OllamaAgent(BaseAgent):
     def __init__(self, name: str, model: str):
         super().__init__(name)
         self.model = model
+        # Load from environment or use default
+        from dotenv import load_dotenv
+        load_dotenv()
         self.base_url = os.getenv("OLLAMA_URL", "http://localhost:11434")
     
     async def answer_question(self, question: str, context: str) -> str:
@@ -75,5 +78,7 @@ def create_local_agent(model_name: str, agent_name: Optional[str] = None) -> Bas
         return OllamaAgent(agent_name or "Deepseek-R1", "deepseek-r1:latest")
     elif model_name == "mistral":
         return OllamaAgent(agent_name or "Mistral", "mistral:latest")
+    elif model_name == "qwen3":
+        return OllamaAgent(agent_name or "Qwen3", "qwen3:latest")
     else:
         return OllamaAgent(agent_name or model_name, f"{model_name}:latest")

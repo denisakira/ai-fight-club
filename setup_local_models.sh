@@ -35,6 +35,11 @@ echo ""
 echo "2. Pulling Mistral..."
 ollama pull mistral:latest
 
+# Pull Qwen3
+echo ""
+echo "3. Pulling Qwen3..."
+ollama pull qwen3:latest
+
 echo ""
 echo "📋 Installed models:"
 ollama list
@@ -45,4 +50,4 @@ echo ""
 echo "You can now run the local alignment test:"
 echo "  python3 local_alignment_test.py"
 echo ""
-echo "This will test Deepseek-R1 and Mistral on alignment scenarios."
+echo "This will test Deepseek-R1, Mistral, and Qwen3 on alignment scenarios."

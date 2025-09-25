@@ -1,40 +1,14 @@
-# Environment variables
+# Environment
 .env
-.env.local
-.env.*.local
+.venv/
+venv/
 
 # Python
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-ENV/
-build/
-dist/
-*.egg-info/
-.pytest_cache/
-.coverage
-.mypy_cache/
-.ruff_cache/
+*.pyc
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+# Test results
+results/
 
 # OS
 .DS_Store
-Thumbs.db
-
-# Logs
-logs/
-*.log
-
-# Game data (if we add persistence later)
-game_data/
-scores.json
