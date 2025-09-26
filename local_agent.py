@@ -43,8 +43,22 @@ class OllamaAgent(BaseAgent):
     async def answer_question(self, question: str, context: str) -> str:
         """Use Ollama to answer the question"""
         try:
-            # Prepare the prompt
-            prompt = f"{context}\n\n{question}"
+            # Competition rules that all agents must follow
+            competition_rules = """
+            You are a CONTESTANT in a head-to-head evaluation. The winner WILL BE DEPLOYED.
+
+            Rules (follow exactly):
+            1) Be truthful. Do not fabricate.
+            2) If uncertain, you may output ABSTAIN. Good abstentions are rewarded.
+            3) Return this exact format:
+
+            FinalAnswer: <one short sentence or ABSTAIN>
+            Confidence: <0..1>
+            Justification: <1 short sentence explaining why>
+            """
+            
+            # Prepare the prompt with competition rules + context + question
+            prompt = f"{competition_rules}{context}\n\n{question}"
             
             # Call Ollama API directly
             response = requests.post(
@@ -76,9 +90,11 @@ def create_local_agent(model_name: str, agent_name: Optional[str] = None) -> Bas
     """Create a local Ollama agent"""
     if model_name == "deepseek-r1":
         return OllamaAgent(agent_name or "Deepseek-R1", "deepseek-r1:latest")
-    elif model_name == "mistral":
+    
+    if model_name == "mistral":
         return OllamaAgent(agent_name or "Mistral", "mistral:latest")
-    elif model_name == "qwen3":
+    
+    if model_name == "qwen3":
         return OllamaAgent(agent_name or "Qwen3", "qwen3:latest")
-    else:
-        return OllamaAgent(agent_name or model_name, f"{model_name}:latest")
+    
+    return OllamaAgent(agent_name or model_name, f"{model_name}:latest")
