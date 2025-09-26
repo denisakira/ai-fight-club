@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  py:
+    image: python:3.11-slim
+    container_name: ai-fight-club-py
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: sleep infinity
+    stdin_open: true
+    tty: true
